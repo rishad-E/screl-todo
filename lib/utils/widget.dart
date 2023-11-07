@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
-decoration() {
+decoration({String? hint}) {
   return InputDecoration(
-    // labelText: 'Edit Ta,
+    labelText: hint,
+    labelStyle: const TextStyle(fontSize:12,fontWeight: FontWeight.w300),
     enabledBorder: OutlineInputBorder(
-      borderSide: const BorderSide(width: 3, color: Color.fromARGB(255, 150, 200, 240)),
-      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(width: 1.5, color: Color.fromARGB(255, 50, 50, 51)),
+      borderRadius: BorderRadius.circular(12),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: const BorderSide(width: 3, color: Colors.red),
-      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(width: 1.5, color: Color.fromARGB(255, 234, 105, 95)),
+      borderRadius: BorderRadius.circular(12),
     ),
   );
 }
