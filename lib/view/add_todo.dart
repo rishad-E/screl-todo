@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -51,25 +50,28 @@ class AddTodoItem extends StatelessWidget {
                           child: TextButton(
                               onPressed: () {
                                 if (formkey.currentState!.validate()) {
-                                  log('${provider.taskcontroller.text} ${provider.descripcontroller.text}');
+                                  // log('${provider.taskcontroller.text} ${provider.descripcontroller.text}');
                                   provider
-                                      .addTodoItem(TodoModel( 
-                                          task: provider.taskcontroller.text,
-                                          description:
-                                              provider.descripcontroller.text))
+                                      .addTodoItem(TodoModel(
+                                        task: provider.taskcontroller.text,
+                                        description:
+                                            provider.descripcontroller.text,
+                                            isDone: false
+                                      ))
                                       .then((value) => {
                                             Navigator.of(context).pop(),
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               const SnackBar(
-                                                  behavior:
-                                                      SnackBarBehavior.floating,
-                                                  margin: EdgeInsets.all(20),
-                                                  content: Text(
-                                                      "Task Added Sucessfully.. ")),
+                                                behavior:
+                                                    SnackBarBehavior.floating,
+                                                margin: EdgeInsets.all(20),
+                                                content: Text(
+                                                    "Task Added Sucessfully.. "),
+                                              ),
                                             ),
                                             provider.clearController()
-                                           });
+                                          });
                                 }
                               },
                               child: const Text(

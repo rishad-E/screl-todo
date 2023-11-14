@@ -26,8 +26,24 @@ class TodoList extends StatelessWidget {
                   side: const BorderSide(width: 1.5),
                   borderRadius: BorderRadius.circular(15),
                 ),
-                title: Text(item.task),
-                subtitle: Text(item.description),
+                title: provider.todoItems[index].isDone == true
+                    ? Text(
+                        item.task,
+                        style: const TextStyle(
+                            decoration: TextDecoration.lineThrough,
+                            decorationColor: Colors.black,
+                            decorationThickness: 2.0),
+                      )
+                    : Text(item.task),
+                subtitle: provider.todoItems[index].isDone == true
+                    ? Text(
+                        item.description,
+                        style: const TextStyle(
+                            decoration: TextDecoration.lineThrough,
+                            decorationColor: Colors.black,
+                            decorationThickness: 2.0),
+                      )
+                    : Text(item.description),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -84,9 +100,12 @@ class TodoList extends StatelessWidget {
                     ),
                   ],
                 ),
-                // trailing:
-
-                leading: Checkbox(value: true, onChanged: (value) {}),
+                leading: Checkbox(
+                  value: item.isDone ?? false,
+                    onChanged: (value) {
+                      provider.updateTodoCheckbox(index, value ?? false);
+                    },
+                ),
               );
             },
             separatorBuilder: (context, index) => const SizedBox(height: 10),

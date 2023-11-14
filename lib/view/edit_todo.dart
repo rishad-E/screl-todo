@@ -21,6 +21,7 @@ class EditTodo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -55,10 +56,11 @@ class EditTodo extends StatelessWidget {
                                       .editTodo(
                                           ind,
                                           TodoModel(
-                                              task:
-                                                  provider.taskcontroller.text,
-                                              description: provider
-                                                  .descripcontroller.text))
+                                            task: provider.taskcontroller.text,
+                                            description:
+                                                provider.descripcontroller.text,
+                                            isDone: false,
+                                          ))
                                       .then((value) => {
                                             Navigator.of(context).pop(),
                                             ScaffoldMessenger.of(context)

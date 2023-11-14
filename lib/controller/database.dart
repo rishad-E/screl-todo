@@ -38,6 +38,21 @@ class DataBaseProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> updateTodoCheckbox(int index, bool isDone) async {
+    final todoDatabase = await Hive.openBox<TodoModel>("to-do");
+    final todo = todoDatabase.getAt(index);
+    if (todo != null) {
+      todo.isDone = isDone;
+      todoDatabase.putAt(index, todo);
+      getAllTodo();
+      notifyListeners();
+    }else{
+      log('Todo not found at index $index',name: 'update todo check');
+      throw Exception("could not find a todo index");
+      
+    }
+  }
+
   clearController() {
     taskcontroller.clear();
     descripcontroller.clear();

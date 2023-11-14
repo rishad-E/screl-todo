@@ -7,10 +7,12 @@ class TodoModel {
   final String task;
   @HiveField(1)
   final String description;
-
+  @HiveField(2)
+  bool? isDone;
 
   TodoModel({
     required this.task,
     required this.description,
+    required this.isDone,
   });
 }
